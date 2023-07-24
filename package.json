@@ -1,0 +1,19 @@
+{
+  "name": "conventionallogs",
+  "version": "0.0.0",
+  "description": "A project designed to generate changelogs while following Conventional Commit Specifications to make version release and documentation easier.",
+  "main": "index.js",
+  "scripts": {
+    "installGithook": "cp scripts/commit-msg.sh .git/hooks/ && mv .git/hooks/commit-msg.sh .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo 'Commit message githook should be copied into local git folder'"
+  },
+  "author": "Ethan Jones",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/node": "^20.4.4",
+    "npm-check-updates": "^16.10.16",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
