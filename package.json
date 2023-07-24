@@ -1,6 +1,6 @@
 {
   "name": "conventionallogs",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "description": "A project designed to generate changelogs while following Conventional Commit Specifications to make version release and documentation easier.",
   "main": "index.js",
   "scripts": {
