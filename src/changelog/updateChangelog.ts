@@ -6,8 +6,7 @@ import fs from 'fs';
  * @param {string} markdown String to append
  */
 export const updateChangelog = (markdown: string) => {
-  console.log('Updating changelog');
-  const changelogPath = './CHANGELOG.md';
+  const changelogPath = `${process.cwd()}/CHANGELOG.md`;
   fs.readFile(changelogPath, 'utf8', (err, data) => {
     if (err) {
       console.log(err);
