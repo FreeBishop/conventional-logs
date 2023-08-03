@@ -1,10 +1,11 @@
 {
   "name": "conventionallogs",
-  "version": "0.2.1",
+  "version": "0.4.1",
   "description": "A project designed to generate changelogs while following Conventional Commit Specifications to make version release and documentation easier.",
   "main": "index.js",
   "scripts": {
-    "installGithook": "cp scripts/commit-msg.sh .git/hooks/ && mv .git/hooks/commit-msg.sh .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo 'Commit message githook should be copied into local git folder'"
+    "installGithook": "cp scripts/commit-msg.sh .git/hooks/ && mv .git/hooks/commit-msg.sh .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo 'Commit message githook should be copied into local git folder'",
+    "test":"npx ts-node ./src/index.ts"
   },
   "author": "Ethan Jones",
   "license": "ISC",

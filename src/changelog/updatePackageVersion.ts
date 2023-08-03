@@ -1,14 +1,16 @@
-import { RegexCaptureGroups } from '../commit/RegexCaptureGroups';
+import { determineVersionBump } from './determineVersionBump';
+import { ParsedMessages } from '../commit/parsedMessages';
+import { BumpVersion } from './BumpVersion';
 import fs from 'fs';
 
 /**
  *  Function that updates the semantic version of package.json depending on commit message type.
- *  Function requires the filepath of the package.json to modify
+ *  Requires the filepath of the package.json to modify.
  *
- * @param {RegexCaptureGroups} commitMessage Object containing the different groups/sections of a Conventional Commit
- * @returns {string} The updated package.json version
+ * @param {ParsedMessages} commitList Object containing the different groups/sections of a Conventional Commit
+ * @returns {string | undefined} The updated package.json version
  */
-export const updatePackageVersion = (commitMessage: RegexCaptureGroups | null): string | undefined => {
+export const updatePackageVersion = async (commitList: ParsedMessages[]): Promise<string | undefined> => {
   try {
     const versionArray: number[] = [];
     const versionString = <string>process.env.npm_package_version;
@@ -19,41 +21,26 @@ export const updatePackageVersion = (commitMessage: RegexCaptureGroups | null): 
       versionArray.push(Number(element));
     });
 
-    // Determine version update (MAJOR.MINOR.PATCH)
-    if (commitMessage !== null) {
-      if (commitMessage.break !== undefined) {
-        versionArray[0]++;
-        versionArray[1] = 0;
-        versionArray[2] = 0;
-      } else if (commitMessage.type.match(/^(feat)$/)) {
-        versionArray[1]++;
-      } else {
-        versionArray[2]++;
-      }
+    const versionBump: BumpVersion = await determineVersionBump(commitList);
+    if (versionBump.MAJOR) {
+      versionArray[0]++;
+      versionArray[1] = 0;
+      versionArray[2] = 0;
+    } else if (versionBump.MINOR) {
+      versionArray[1]++;
     } else {
-      throw new Error('commitMessage parameter is null');
+      versionArray[2]++;
     }
 
     // Convert number array into a single version string and update package.json
     const newPackageVersion: string = versionArray.join('.');
-    fs.readFile(packagePath, 'utf8', (err, rawData) => {
-      if (err) {
-        throw new Error('Error reading package.json file');
-      } else {
-        const modifyVersion = rawData.replace(/(\d+\.)(\d+\.)(\d+)/, newPackageVersion);
-        fs.writeFile(packagePath, modifyVersion, (err) => {
-          if (err) {
-            throw new Error('Error modifying version number of package.json file');
-          } else {
-            console.log('Successfully modified version number on package.json');
-          }
-        });
-      }
-    });
+    const currPackageData: string = fs.readFileSync(packagePath, {encoding: 'utf8'});
+    const newPackageData: string = currPackageData.replace(/(\d+\.)(\d+\.)(\d+)/, newPackageVersion);
+    fs.writeFileSync(packagePath, newPackageData);
 
     // Return new package version for changelog generation
     return newPackageVersion;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
