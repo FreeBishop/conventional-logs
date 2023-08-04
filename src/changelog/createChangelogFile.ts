@@ -5,11 +5,5 @@ import fs from 'fs'
  */
 export const createChangelogFile = () => {
     const initialMarkdown = '# Changelog\n'
-    fs.writeFile('CHANGELOG.md', initialMarkdown, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log('Changelog.md has been initialized')
-        }
-    })
+    fs.writeFileSync('CHANGELOG.md', initialMarkdown);
 }

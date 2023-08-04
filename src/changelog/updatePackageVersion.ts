@@ -1,5 +1,5 @@
 import { determineVersionBump } from './determineVersionBump';
-import { ParsedMessages } from '../commit/parsedMessages';
+import { ParsedMessages } from '../commit/ParsedMessages';
 import { BumpVersion } from './BumpVersion';
 import fs from 'fs';
 

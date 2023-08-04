@@ -1,20 +1,22 @@
 import { parseCommitMessage } from '../commit/parseCommitMessage';
 import { updatePackageVersion } from './updatePackageVersion';
 import { createFirstRelease } from './createFirstRelease';
-import { ParsedMessages } from '../commit/parsedMessages';
+import { ParsedMessages } from '../commit/ParsedMessages';
 import { getCommitDate } from '../commit/getCommitDate';
 import { updateChangelog } from './updateChangelog';
 
 /**
  *  Generate a changelog using information from the most recent Git commit
  * 
+ *  @param {String[]} options Array containing zero, or more, options to change convetionalLogs behavior
+ * 
  *  @NOTE If ```--first-release``` argument is passed to the script, then this function will initialize the CHANGELOG.md and will not bump package versions. This means the initial package version must be declared by the user.
  */
-export const createChangelogMessage = async () => {
+export const createChangelogMessage = async (options: String[]) => {
   try {
-    if (process.argv.find(argument => argument === '--first-release') !== undefined) {
+    if (options.find(option => option === '--first-release') !== undefined) {
       const initialVersion = <string>process.env.npm_package_version;
-      const markdown: string = createFirstRelease();
+      const markdown: string = createFirstRelease(initialVersion);
       updateChangelog(markdown, initialVersion);
     } else {
       const commitDate: string = await getCommitDate();

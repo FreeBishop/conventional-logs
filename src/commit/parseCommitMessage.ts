@@ -1,5 +1,5 @@
 import { getRegexGroups } from './getRegexGroups';
-import { ParsedMessages } from './parsedMessages';
+import { ParsedMessages } from './ParsedMessages';
 import { execSync } from 'child_process';
 
 /**

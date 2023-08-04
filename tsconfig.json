@@ -4,6 +4,6 @@
     },
     "extends": "@tsconfig/recommended/tsconfig.json",
     "exclude": ["node_modules"],
-    "include": ["src"]
+    "include": ["src", "index.ts"]
   }
   
