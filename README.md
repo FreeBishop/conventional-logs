@@ -32,4 +32,3 @@ This will create the CHANGELOG.md file for the first release of the project. Con
 ``` bash
 npm cologs --first-release
 ```
-
