@@ -6,9 +6,10 @@
     "cologs":"./bin/cli.js"
   },
   "scripts": {
+    "compile": "npx tsc",
     "installGithook": "cp scripts/commit-msg.sh .git/hooks/ && mv .git/hooks/commit-msg.sh .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo 'Commit message githook should be copied into local git folder'",
-    "test":"npx ts-node ./src/index.ts",
-    "compile": "npx tsc"
+    "prepare": "npm run compile",
+    "test":"npx ts-node ./src/index.ts"
   },
   "author": "Ethan Jones",
   "license": "MIT",
