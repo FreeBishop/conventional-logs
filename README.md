@@ -2,6 +2,22 @@
 
 This package is a CLI utility tool for generating a CHANGELOG using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification as a basis. By writing clean commits, it allows smaller projects to document changes between versions and update the Semantic Version accordingly.
 
+## Installing Conventional-Logs
+
+This [package](https://www.npmjs.com/package/conventional-logs) can be installed locally to `devDependencies`:
+
+```bash
+npm i -D conventional-logs
+```
+
+The package can be executed through an `package.json` script, or directly in the terminal:
+
+```json
+"scripts": {
+    "updateChangelog": "npx cologs"
+}
+```
+
 ## How it Works
 
 1. A user `merge --squash` a development branch into the main branch, followed by a commit that matches Conventional Commit specifications
