@@ -8,7 +8,6 @@
   "scripts": {
     "compile": "npx tsc",
     "installGithook": "cp scripts/commit-msg.sh .git/hooks/ && mv .git/hooks/commit-msg.sh .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo 'Commit message githook should be copied into local git folder'",
-    "prepare": "npm run compile",
     "test":"npx ts-node ./src/index.ts"
   },
   "author": "Ethan Jones",

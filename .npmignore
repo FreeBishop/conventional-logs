@@ -1,0 +1,6 @@
+CHANGELOG.md 
+node_modules
+src/
+index.ts
+.gitignore
+.git/
