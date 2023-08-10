@@ -2,6 +2,11 @@
   "name": "conventional-logs",
   "version": "1.0.1",
   "description": "A project designed to generate changelogs while following Conventional Commit Specifications to make version release and documentation easier.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FreeBishop/conventional-logs.git"
+  },
+  "homepage": "https://github.com/FreeBishop/conventional-logs.git#readme",
   "bin": {
     "cologs":"./bin/cli.js"
   },
