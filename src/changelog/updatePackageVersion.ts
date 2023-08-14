@@ -1,6 +1,6 @@
 import { determineVersionBump } from './determineVersionBump';
 import { ParsedMessages } from '../commit/ParsedMessages';
-import { BumpVersion } from './BumpVersion';
+import { BumpVersion } from './types/BumpVersion';
 import fs from 'fs';
 
 /**

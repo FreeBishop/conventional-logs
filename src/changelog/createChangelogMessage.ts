@@ -1,3 +1,4 @@
+import { formatCommitCategories } from './formatCommitCategories';
 import { parseCommitMessage } from '../commit/parseCommitMessage';
 import { updatePackageVersion } from './updatePackageVersion';
 import { createFirstRelease } from './createFirstRelease';
@@ -26,10 +27,7 @@ export const createChangelogMessage = async (options: String[]) => {
       // For now, do not seperate by commit types... that will probably be a future update
       if (commitList !== null && packageVersion !== undefined) {
         let markdownHeader: string = `\n## ${packageVersion} (${commitDate})\n`
-        commitList.forEach((commit) => {
-          const markdownEntry: string = `\n- ${commit.regexGroups.type}${commit.regexGroups.scope !== undefined ? `(${commit.regexGroups.scope})` : ''}${commit.regexGroups.break !== undefined ? '!' : ''}: ${commit.regexGroups.message} (#${commit.shortHash})`;
-          markdownHeader+=markdownEntry;
-        })
+        markdownHeader += formatCommitCategories(commitList);
         await updateChangelog(markdownHeader, packageVersion);
       } else {
         console.error('commitList object is null or could not determine new package version');

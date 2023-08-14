@@ -1,5 +1,5 @@
 import { ParsedMessages } from "../commit/ParsedMessages";
-import { BumpVersion } from "./BumpVersion";
+import { BumpVersion } from "./types/BumpVersion";
 
 /**
  *  Determines how package.json semantic version should be updated given a list of git commits
