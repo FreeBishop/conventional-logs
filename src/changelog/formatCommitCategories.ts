@@ -23,7 +23,7 @@ export const formatCommitCategories = (commitList: ParsedMessages[]) => {
             }
             categoryArray.push(newCategory);
         } else {
-            const newCommitInfo: string = `\n- ${commit.regexGroups.scope !== undefined ? `(${commit.regexGroups.scope})` : ''}${commit.regexGroups.break !== undefined ? '!' : ''}: ${commit.regexGroups.message} (#${commit.shortHash})`
+            const newCommitInfo: string = `\n- ${commit.regexGroups.scope !== undefined ? `(${commit.regexGroups.scope}):` : ''}${commit.regexGroups.break !== undefined ? 'BREAKING --> ' : ''} ${commit.regexGroups.message} (#${commit.shortHash})`
             categoryArray[categoryIndex].commitInfo.push(newCommitInfo)
         }
     })

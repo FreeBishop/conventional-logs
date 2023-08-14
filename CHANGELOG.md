@@ -4,7 +4,7 @@
 
 ### FEAT
 
-- : Add function to format CHANGELOG commit messages by category (#6f3b6b3)
+- Add function to format CHANGELOG commit messages by category (#6f3b6b3)
 
 
 ## 1.0.2 (2023-08-10)
