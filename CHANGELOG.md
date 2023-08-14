@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2 (2023-08-14)
+
+### FEAT
+
+- : Add function to format CHANGELOG commit messages by category (#6f3b6b3)
+
+
 ## 1.0.2 (2023-08-10)
 
 - docs: Add Github repository and homepage to package.json (#bdb962f)
