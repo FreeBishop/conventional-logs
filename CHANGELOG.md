@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.2 (2023-08-24)
+
+### FEAT
+
+- : Add feature to specifiy additonal files to update versions for through an external JSON file (#7612b0e)
+
+### FIX
+
+- : Remove colon punctuation if a commit scope is no specified (#b47b982)
+
+
 ## 1.1.2 (2023-08-14)
 
 ### FEAT
