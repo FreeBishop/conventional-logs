@@ -5,6 +5,7 @@ import { createFirstRelease } from './createFirstRelease';
 import { ParsedMessages } from '../commit/ParsedMessages';
 import { getCommitDate } from '../commit/getCommitDate';
 import { updateChangelog } from './updateChangelog';
+import { parseBumpFile } from './parseBumpFile';
 
 /**
  *  Generate a changelog using information from the most recent Git commit
@@ -18,6 +19,9 @@ export const createChangelogMessage = async (options: String[]) => {
     if (options.find(option => option === '--first-release') !== undefined) {
       const initialVersion = <string>process.env.npm_package_version;
       const markdown: string = createFirstRelease(initialVersion);
+      if (options.find((option) => option === '--bumpList') !== undefined) {
+        parseBumpFile();
+      }
       updateChangelog(markdown, initialVersion);
     } else {
       const commitDate: string = await getCommitDate();
@@ -28,6 +32,9 @@ export const createChangelogMessage = async (options: String[]) => {
       if (commitList !== null && packageVersion !== undefined) {
         let markdownHeader: string = `\n## ${packageVersion} (${commitDate})\n`
         markdownHeader += formatCommitCategories(commitList);
+        if (options.find((option) => option === '--bumpList') !== undefined) {
+          parseBumpFile();
+        }
         await updateChangelog(markdownHeader, packageVersion);
       } else {
         console.error('commitList object is null or could not determine new package version');
